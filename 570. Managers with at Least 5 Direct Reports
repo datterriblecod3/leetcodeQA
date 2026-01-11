@@ -29,5 +29,5 @@ m.name
 from employee m
 left join employee e
 on m.id = e.managerId
-group by m.name, m.id
+group by m.name,m.id
 having COUNT(e.id) >=5;
