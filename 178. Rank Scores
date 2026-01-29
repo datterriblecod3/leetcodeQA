@@ -43,9 +43,19 @@ Output:
 +-------+------+
 
 ANSWER:
-WITH rank_score as (
+WITH high_score as (
+select 
+id as rank,
+DENSE_RANK() OVER(order by score desc) as score_rank
+from scores
+group by rank
+HAVING COUNT(score) = score_rank
+)
 select
-
+rank,
+score_rank
+from high_score
+order by rank, score_rank;
 
 
 
